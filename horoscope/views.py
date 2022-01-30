@@ -75,30 +75,35 @@ def index(request):
 
 
 def types_of_signs(request):
+    zodiacs = list(zodiac_dict)
     types = list(signs_of_types.keys())
-    li_elements = ""
-    for type in types:
-        li_elements += f"<li><a href={reverse('type_name', args=(type,))}>{type.title()}</a></li>"
-    response = f"""
-    <ul>
-        {li_elements}
-
-    </ul>
-    """
-    return HttpResponse(response)
+    context = {
+        "types": types,
+        "zodiacs": zodiacs
+    }
+    # li_elements = ""
+    # for type in types:
+    #     li_elements += f"<li><a href={reverse('type_name', args=(type,))}>{type.title()}</a></li>"
+    # response = f"""
+    # <ul>
+    #     {li_elements}
+    #
+    # </ul>
+    # """
+    return render(request, "horoscope/types_of_signs.html", context=context)
 
 
 def get_signs_of_type(request, type_of_sign: str):
-    signs = signs_of_types[type_of_sign]
-    li_elements = ""
-    for sign in signs:
-        li_elements += f"<li><a href={reverse('horoscope_name', args=(sign,))}>{sign.title()}</a></li>"
-    response = f"""
-    <ul>
-        {li_elements}
-    </ul>
-    """
-    return HttpResponse(response)
+    signs_of_type = signs_of_types[type_of_sign]
+    types_rus = {'fire': 'огня', 'water': 'воды', 'air': 'воздуха', 'earth': 'земли'}
+    type = types_rus[type_of_sign]
+    zodiacs = list(zodiac_dict)
+    context = {
+        "signs_of_type": signs_of_type,
+        "type": type,
+        "zodiacs": zodiacs
+    }
+    return render(request, "horoscope/get_types_of_signs.html", context=context)
 
 
 def get_sign_from_date(request, month, day):

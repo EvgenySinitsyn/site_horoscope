@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}
+    Types of signs
+{% endblock %}
+
+{% block css_additional %}
+    <link rel="stylesheet" href=" {% static 'horoscope/css/types_of_signs.css' %} ">
+{% endblock %}
+
+{% block content %}
+<h1>Типы знаков зодиака</h1>
+<ol>
+    {% for type in types %}
+        <li><a href="{% url 'type_name' type_of_sign=type %}">{{ type|title }}</a></li>
+    {% endfor %}
+</ol>
+{% endblock %}

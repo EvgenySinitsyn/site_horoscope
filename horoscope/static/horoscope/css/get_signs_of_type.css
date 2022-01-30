@@ -1,0 +1,31 @@
+ol {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 1;
+    list-style-type: none;
+    background-color: #f1f1f1;
+    width: 90%;
+    max-width: 35rem;
+    border-radius: 20px;
+    margin: 2rem auto;
+    padding: 1px;
+}
+
+ol li {
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    padding: 2rem 1rem;
+}
+
+ol a:hover, ol a:active {
+    color: pink
+}
+
+h1 {
+color: #e8dede;
+text-align: center;
+font-family: "Andale Mono", AndaleMono, monospace;
+font-size:48px;
+text-decoration: underline;
+}
