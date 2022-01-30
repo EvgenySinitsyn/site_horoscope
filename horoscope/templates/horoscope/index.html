@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load my_filter %}
 
 {% block title %}
     Меню
@@ -14,8 +15,8 @@
 {% block content %}
 <h1>Приложение Зодиак</h1>
 <ol>
-    {% for zodiac in zodiacs %}
-        <li><a href="{% url 'horoscope_name' sign_zodiac=zodiac %}">{{ zodiac|title }}</a></li>
+    {% for sign, description_sign in zodiacs.items %}
+        <li><a href="{% url 'horoscope_name' sign_zodiac=sign %}">{{ description_sign|split|first }}</a></li>
     {% endfor %}
 </ol>
 {% endblock %}

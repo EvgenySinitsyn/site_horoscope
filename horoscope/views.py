@@ -43,20 +43,20 @@ def get_my_date_converter(request, sign_zodiac):
 
 def get_info_about_sign_zodiac(request, sign_zodiac: str):
     if sign_zodiac in zodiac_dict:
-        zodiacs = list(zodiac_dict)
-        description = zodiac_dict.get(sign_zodiac)[0]
+        zodiacs = {key: value[0] for key, value in zodiac_dict.items()}
+        description = zodiac_dict[sign_zodiac][0]
     else:
         description = None
     data = {
         'description': description,
         'sign': sign_zodiac,
         'zodiacs': zodiacs,
-        'sign_name': description.split()[0],
     }
     return render(request, 'horoscope/info_zodiac.html', context=data)
 
 
 def get_info_about_sign_zodiac_by_number(request, sign_zodiac: int):
+
     zodiacs = list(zodiac_dict)
     if sign_zodiac > 12:
         return HttpResponseNotFound(f"Знака зодиака с номером {sign_zodiac} не существует")
@@ -66,7 +66,7 @@ def get_info_about_sign_zodiac_by_number(request, sign_zodiac: int):
 
 
 def index(request):
-    zodiacs = list(zodiac_dict)
+    zodiacs = {key: value[0] for key, value in zodiac_dict.items()}
     context = {
         'zodiacs': zodiacs
     }
@@ -74,7 +74,7 @@ def index(request):
 
 
 def types_of_signs(request):
-    zodiacs = list(zodiac_dict)
+    zodiacs = {key: value[0] for key, value in zodiac_dict.items()}
     types = list(signs_of_types.keys())
     context = {
         "types": types,
@@ -87,7 +87,7 @@ def get_signs_of_type(request, type_of_sign: str):
     signs_of_type = signs_of_types[type_of_sign]
     types_rus = {'fire': 'огня', 'water': 'воды', 'air': 'воздуха', 'earth': 'земли'}
     type = types_rus[type_of_sign]
-    zodiacs = list(zodiac_dict)
+    zodiacs = {key: value[0] for key, value in zodiac_dict.items()}
     context = {
         "signs_of_type": signs_of_type,
         "type": type,

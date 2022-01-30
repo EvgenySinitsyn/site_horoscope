@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load my_filter %}
 
 {% block title %}
 {{sign|capfirst}}
@@ -12,7 +13,7 @@
 
 
 {% block content %}
-    <h1>{{sign_name|capfirst}}</h1>
+    <h1>{{ description|split|first }}</h1>
     {% if description is None %}
         <h2>Неправильный знак зодиака {{sign|capfirst}}</h2>
     {% else %}
