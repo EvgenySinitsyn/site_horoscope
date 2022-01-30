@@ -67,7 +67,6 @@ def get_info_about_sign_zodiac_by_number(request, sign_zodiac: int):
 
 def index(request):
     zodiacs = list(zodiac_dict)
-    # f"<li><a href={redirect_path}>{sign.title()}</a></li>"
     context = {
         'zodiacs': zodiacs
     }
@@ -81,15 +80,6 @@ def types_of_signs(request):
         "types": types,
         "zodiacs": zodiacs
     }
-    # li_elements = ""
-    # for type in types:
-    #     li_elements += f"<li><a href={reverse('type_name', args=(type,))}>{type.title()}</a></li>"
-    # response = f"""
-    # <ul>
-    #     {li_elements}
-    #
-    # </ul>
-    # """
     return render(request, "horoscope/types_of_signs.html", context=context)
 
 
